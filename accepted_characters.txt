@@ -1,0 +1,132 @@
+accepted characters list:
+
+
+Dec     Hex	  char     Unicode description
+0		00  	�      Control character: Null
+1		01  		   Control character: Start Of Heading
+2		02  		   Control character: Start Of Text
+3		03  		   Control character: End Of Text
+4		04  		   Control character: End Of Transmission
+5		05  		   Control character: Enquiry
+6		06  		   Control character: Acknowledge
+7		07  		   Control character: Bell
+8		08  		   Control character: Backspace
+9		09  		   Control character: Character Tabulation
+10		0A  		   Control character: Line Feed (lf)
+11		0B  		   Control character: Line Tabulation
+12		0C  		   Control character: Form Feed (ff)
+13		0D  		   Control character: Carriage Return (cr)
+14		0E  		   Control character: Shift Out
+15		0F  		   Control character: Shift In
+16		10  		   Control character: Data Link Escape
+17		11  		   Control character: Device Control One
+18		12  		   Control character: Device Control Two
+19		13  		   Control character: Device Control Three
+20		14  		   Control character: Device Control Four
+21		15  		   Control character: Negative Acknowledge
+22		16  		   Control character: Synchronous Idle
+23		17  		   Control character: End Of Transmission Block
+24		18  		   Control character: Cancel
+25		19  		   Control character: End Of Medium
+26		1A  		   Control character: Substitute
+27		1B  		   Control character: Escape
+28		1C  		   Control character: Information Separator Four
+29		1D  		   Control character: Information Separator Three
+30		1E  		   Control character: Information Separator Two
+31		1F  		   Control character: Information Separator One
+32		20  		   Space
+33		21  	!   	Exclamation Mark
+34		22  	"   	Quotation Mark
+35		23  	#   	Number Sign
+36		24  	$   	Dollar Sign
+37		25  	%   	Percent Sign
+38		26  	&   	Ampersand
+39		27  	'   	Apostrophe
+40		28  	(   	Left Parenthesis
+41		29  	)   	Right Parenthesis
+42		2A  	*   	Asterisk
+43		2B  	+   	Plus Sign
+44		2C  	,   	Comma
+45		2D  	-   	Hyphen-minus
+46		2E  	.   	Full Stop
+47		2F  	/   	Solidus
+48		30  	0   	Digit Zero
+49		31  	1   	Digit One
+50		32  	2   	Digit Two
+51		33  	3   	Digit Three
+52		34  	4   	Digit Four
+53		35  	5   	Digit Five
+54		36  	6   	Digit Six
+55		37  	7   	Digit Seven
+56		38  	8   	Digit Eight
+57		39  	9   	Digit Nine
+58		3A  	:   	Colon
+59		3B  	;   	Semicolon
+60		3C  	<   	Less-than Sign
+61		3D  	=   	Equals Sign
+62		3E  	>   	Greater-than Sign
+63		3F  	?   	Question Mark
+64		40  	@   	Commercial At
+65		41  	A   	Latin Capital Letter A
+66		42  	B   	Latin Capital Letter B
+67		43  	C   	Latin Capital Letter C
+68		44  	D   	Latin Capital Letter D
+69		45  	E   	Latin Capital Letter E
+70		46  	F   	Latin Capital Letter F
+71		47  	G   	Latin Capital Letter G
+72		48  	H   	Latin Capital Letter H
+73		49  	I   	Latin Capital Letter I
+74		4A  	J   	Latin Capital Letter J
+75		4B  	K   	Latin Capital Letter K
+76		4C  	L   	Latin Capital Letter L
+77		4D  	M   	Latin Capital Letter M
+78		4E  	N   	Latin Capital Letter N
+79		4F  	O   	Latin Capital Letter O
+80		50  	P   	Latin Capital Letter P
+81		51  	Q   	Latin Capital Letter Q
+82		52  	R   	Latin Capital Letter R
+83		53  	S   	Latin Capital Letter S
+84		54  	T   	Latin Capital Letter T
+85		55  	U   	Latin Capital Letter U
+86		56  	V   	Latin Capital Letter V
+87		57  	W   	Latin Capital Letter W
+88		58  	X   	Latin Capital Letter X
+89		59  	Y   	Latin Capital Letter Y
+90		5A  	Z   	Latin Capital Letter Z
+91		5B  	[   	Left Square Bracket
+92		5C  	\   	Reverse Solidus
+93		5D  	]   	Right Square Bracket
+94		5E  	^   	Circumflex Accent
+95		5F  	_   	Low Line
+96		60  	`   	Grave Accent
+97		61  	a   	Latin Small Letter A
+98		62  	b   	Latin Small Letter B
+99		63  	c   	Latin Small Letter C
+100		64  	d   	Latin Small Letter D
+101		65  	e   	Latin Small Letter E
+102		66  	f   	Latin Small Letter F
+103		67  	g   	Latin Small Letter G
+104		68  	h   	Latin Small Letter H
+105		69  	i   	Latin Small Letter I
+106		6A  	j   	Latin Small Letter J
+107		6B  	k   	Latin Small Letter K
+108		6C  	l   	Latin Small Letter L
+109		6D  	m   	Latin Small Letter M
+110		6E  	n   	Latin Small Letter N
+111		6F  	o   	Latin Small Letter O
+112		70  	p   	Latin Small Letter P
+113		71  	q   	Latin Small Letter Q
+114		72  	r   	Latin Small Letter R
+115		73  	s   	Latin Small Letter S
+116		74  	t   	Latin Small Letter T
+117		75  	u   	Latin Small Letter U
+118		76  	v   	Latin Small Letter V
+119		77  	w   	Latin Small Letter W
+120		78  	x   	Latin Small Letter X
+121		79  	y   	Latin Small Letter Y
+122		7A  	z   	Latin Small Letter Z
+123		7B  	{   	Left Curly Bracket
+124		7C  	|   	Vertical Line
+125		7D  	}   	Right Curly Bracket
+126		7E  	~   	Tilde
+127		7F  	   	Control character: Delete
