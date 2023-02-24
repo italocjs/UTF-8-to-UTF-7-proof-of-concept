@@ -9,21 +9,6 @@
 #include <vector>
 using namespace std;
 
-string palavra = "abcdefghijklmopqrstuvxywz0123456789";
-
-//> processo: pega string ascii8, transforma em vetor binario7, transforma em HEX e transmite
-//> processo: recebe HEX, junta conjuntos de 7bits e adiciona 1bit (0),  transforma conjuntos de 8 em char
-
-//> função1: recebe string, verifica que os caracteres são validos (<127)
-//              e retorna uma vetor<bool>.  exclui o ultimo bit (inutil)
-//> função2: recebe vetor<bool> e agrupa conjuntos de 8bits, retorna vetor de char
-//> função3: recebe vetor de char e simula transmissão
-//> função4: recebe transmissão (tudo zoado aparentemente), desagrupa conjuntos de 7bits e adiciona o ultimo bit
-//           agrupa os conjuntos em uma string
-//>
-//> falta conferir se o ascii é menor que 127..
-//>
-
 void print_binary_array(vector<bool> input, int bits_size = 7)
 {
     int spaces = 0;
@@ -55,7 +40,7 @@ vector<bool> ascii_to_utf7_bin(string input, bool debug = false)  // funcao1
         //3 push sub_buffer pro main_buffer?
 
         //1
-        if (letra > 127) { letra = 0x20; printf("\033[91m Unsupported char received! \033[0m\r\n");} // hex for utf8 "!"
+        if (letra > 127) { letra = 0x20; printf("\033[91m Unsupported char received! \033[0m\r\n");} // hex for utf8 space
         //2
         sub_vector.clear();
         for (int j = 0; j < 7; j++)
