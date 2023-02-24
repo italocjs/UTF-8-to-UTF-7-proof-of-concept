@@ -42,7 +42,7 @@ void print_binary_array(vector<bool> input, int bits_size = 7)
     }
     cout << endl;
 }
-vector<bool> utf8_to_7bit_bin_v3(string input)  // funcao1
+vector<bool> utf8_to_7bit_bin_v4(string input)  // funcao1
 {
     vector<bool> binary_array;
     vector<bool> sub_vector;
@@ -72,7 +72,7 @@ vector<bool> utf8_to_7bit_bin_v3(string input)  // funcao1
         //print_binary_array(sub_vector);
         for (int i = 0; i < 7; i++)
         {
-        binary_array.push_back(sub_vector[i]);
+            binary_array.push_back(sub_vector[i]);
         }
     }
     cout << "utf8_to_7bit_bin_v3: ";
@@ -158,8 +158,6 @@ string binary_to_monster(vector<bool> v)
                 sub_vector.push_back(v[bitcount]);
                 bitcount++;
             }
-
-
         }
         else
         {
@@ -170,12 +168,6 @@ string binary_to_monster(vector<bool> v)
                 bitcount++;
             }
         }
-
-
-
-        //reverse(sub_vector.begin(), sub_vector.end());
-        //int valor = bits_to_int(sub_vector);
-        //vetor_out+= (char(valor));
         vetor_out += bits_to_char(sub_vector);
         print_binary_array(sub_vector, 8);
         sub_vector.clear();  // importante!
@@ -188,9 +180,10 @@ string binary_to_monster(vector<bool> v)
 //testes:  01234567  nao tem resto!  56bits | 64 original
 int main()
 {
-    system("CLS");
+    string data = "abcdefgh";
+    cout << "data to convert is: " << data << endl;
     //    vector<bool> binary_data = utf8_to_utf7binaryv2("012345678");
-    vector<bool> binary_data = utf8_to_7bit_bin_v3("012345678");
+    vector<bool> binary_data = utf8_to_7bit_bin_v4(data);
     //binary_to_ascii_validation(binary_data);
     binary_to_monster(binary_data);
     int i = 0;
