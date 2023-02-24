@@ -42,14 +42,12 @@ void print_binary_array(vector<bool> input, int bits_size = 7)
     }
     cout << endl;
 }
-vector<bool> utf8_to_7bit_bin_v4(string input)  // funcao1
+vector<bool> ascii_to_utf7_bin(string input, bool debug = false)  // funcao1
 {
     vector<bool> binary_array;
     vector<bool> sub_vector;
-    int chars_in_string = input.length();
-    int bytes = chars_in_string;
 
-    for (char letra : input)
+    for (uint8_t letra : input)
     {
         //0 checa se é valido (<127)
         //1 limpa o sub_buffer e coloca a letra no subbuffer
@@ -57,7 +55,7 @@ vector<bool> utf8_to_7bit_bin_v4(string input)  // funcao1
         //3 push sub_buffer pro main_buffer?
 
         //1
-        if (letra > 127) { letra = 0x20; printf("letra>127\r\n"); } // hex for utf8 "!"
+        if (letra > 127) { letra = 0x20; printf("\033[91m Unsupported char received! \033[0m\r\n");} // hex for utf8 "!"
         //2
         sub_vector.clear();
         for (int j = 0; j < 7; j++)
@@ -69,17 +67,16 @@ vector<bool> utf8_to_7bit_bin_v4(string input)  // funcao1
         //3
         reverse(sub_vector.begin(), sub_vector.end());
         //4
-        //print_binary_array(sub_vector);
+        if (debug) print_binary_array(sub_vector);
         for (int i = 0; i < 7; i++)
         {
             binary_array.push_back(sub_vector[i]);
         }
     }
-    cout << "utf8_to_7bit_bin_v3: ";
-    print_binary_array(binary_array);
+    if (debug) cout << "ascii_to_utf7_bin: ";
+    if (debug) print_binary_array(binary_array);
     return binary_array;
 }
-
 
 /**
  * @brief helper function to convert a vector (size 7 or 8) into a int
@@ -109,11 +106,15 @@ int bits_to_int(vector<bool> b)
  * @param b
  * @return char
  */
-char bits_to_char(vector<bool> b)
+char bits_to_char(vector<bool> b, bool debug = false)
 {
     int i;
     i = accumulate(b.begin(), b.end(), 0, [](int x, int y) { return (x << 1) + y; });
-    printf("%c - %d: \t", i, i);
+    if (debug)
+    {
+        printf("char: %c\t dec: %d\t bin: ", i, i);
+        print_binary_array(b, 8);
+    }
     return i;
 }
 
@@ -124,22 +125,20 @@ char bits_to_char(vector<bool> b)
  * @param v
  * @return string
  */
-string binary_to_monster(vector<bool> v)
+string binary_to_utf7(vector<bool> v, bool debug = false)
 {
-    cout << "***entry of binary to magic***" << endl;
-
     vector<bool> sub_vector;
     string vetor_out;
     int bitcount = 0;
     int n = 8; // split vector into sub-vectors each of size `n`
     int block_count = (v.size() - 1) / n + 1; // determine the total number of sub-vectors of size `n`
-    int resto = v.size() / block_count;
+    int remainder = v.size() / block_count; //how many bits are missing from the last block? we need to add leading zeroes!
     bool incomplete_byte = false;
+    (remainder < 8) ? incomplete_byte = true : incomplete_byte = false;
 
-    (resto < 8) ? incomplete_byte = true : incomplete_byte = false;
-    cout << "resto: " << resto << endl;
-    printf("full_size = %d | block_count = %d | ultimo_bloco = %d | incomplete = %d\r\n",
-        v.size(), block_count, resto, incomplete_byte);
+    if (debug) printf("full_size = %d | block_count = %d | ultimo_bloco = %d | incomplete = %d\r\n",
+        v.size(), block_count, remainder, incomplete_byte);
+
     for (int current_block = 0; current_block < block_count; current_block++)
     {  // aqui eu to abrindo blocos de 7
         sub_vector.clear();  // importante!
@@ -147,10 +146,10 @@ string binary_to_monster(vector<bool> v)
         //printf("current_block %d block_count = %d islast = %d >> ", current_block, block_count, is_last_block);
         if (is_last_block && incomplete_byte) //different way to handle last bit
         {
-            int missing_leads = 8 - resto;
+            int missing_leads = 8 - remainder;
             for (int i = 0; i < missing_leads; i++)
             {
-                cout << "LAST: ";
+                if (debug)cout << "ADDED_LEADING_ZERO: ";
                 sub_vector.push_back(0);
             }
             for (int current_bit = 0; current_bit < (n - missing_leads); current_bit++)
@@ -168,27 +167,62 @@ string binary_to_monster(vector<bool> v)
                 bitcount++;
             }
         }
-        vetor_out += bits_to_char(sub_vector);
-        print_binary_array(sub_vector, 8);
+        vetor_out += bits_to_char(sub_vector, debug);
+        //print_binary_array(sub_vector, 8);
         sub_vector.clear();  // importante!
     }
-    cout << "out = " << vetor_out << endl;
+    if (debug) cout << "vector_out = = " << vetor_out << endl;
     return vetor_out;
 }
 
+vector<uint8_t> data_to_hex(string input)
+{
+    vector<uint8_t> output;
+    output.clear();
+    for (char letra : input)
+    {
+        output.push_back(uint8_t(letra));
+    }
+    return output;
+}
+void print_as_hex(vector<uint8_t> input)
+{
+    printf("HEX_data:\t");
+    for (uint8_t byte : input)
+    {
+        printf("%02X", byte);
+    }
+    printf("\r\n");
+}
+void print_as_hex(string input)
+{
+    printf("hex_data:\t");
+    for (uint8_t byte : input)
+    {
+        printf("%02X", byte);
+    }
+    printf("\r\n");
+}
+
+
 //testes:  012345678 tem resto! 63bits compactado | 72 original
 //testes:  01234567  nao tem resto!  56bits | 64 original
+
 int main()
 {
-    string data = "abcdefgh";
-    cout << "data to convert is: " << data << endl;
-    //    vector<bool> binary_data = utf8_to_utf7binaryv2("012345678");
-    vector<bool> binary_data = utf8_to_7bit_bin_v4(data);
-    //binary_to_ascii_validation(binary_data);
-    binary_to_monster(binary_data);
-    int i = 0;
+    string data = "0123465789abcdefghijklmnopqrstuvxywz!@#$%&*()-=_+";
 
-    // utf7binary_to_int(binary_data);
+    vector<bool> binary_data = ascii_to_utf7_bin(data,true); //Convert data into binary
+    string compacted_data = binary_to_utf7(binary_data,true); //Convert binary into string
+
+    float percent = ((float(data.size()) / float(compacted_data.size())) - 1.00f) * 100.0f;
+
+    cout << endl << endl;
+    cout << "original_data:\t" << data << endl;
+    cout << "compacted_data:\t" << compacted_data << endl;
+    print_as_hex(compacted_data);
+
+    printf("data_size: %d \tcompacted_size: %d \treduction: %0.2f \r\n", int(data.size()), int(compacted_data.size()), percent);
 }
 //                              f_v1        f_v2 ok
 // a =  dec:097	bin:01100001	1000011     1100001
